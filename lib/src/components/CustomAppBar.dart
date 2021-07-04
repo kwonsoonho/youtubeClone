@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -15,7 +16,9 @@ class CustomAppBar extends StatelessWidget {
     return Row(
       children: [
         IconButton(icon: Icon(Icons.notifications_none), onPressed: () {}),
-        IconButton(icon: Icon(Icons.search), onPressed: () {}),
+        IconButton(icon: Icon(Icons.search), onPressed: () {
+          Get.toNamed("/search");
+        }),
         CircleAvatar( // 이미지를 Provider로 받아옴. 이미지 주소 복사 해서 붙여넣음
           backgroundColor: Colors.grey.withOpacity(0.5),
           backgroundImage: Image.network("https://dimg.donga.com/wps/NEWS/IMAGE/2021/01/17/104953245.2.jpg").image,

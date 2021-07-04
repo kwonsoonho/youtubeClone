@@ -57,4 +57,20 @@ class YoutubeRepsository extends GetConnect {
     }
     return Future.error(response.statusText!);
   }
+
+  Future<YoutubeVideoResult> search(String searchKeyword,String nextPageToken) async {
+    String url =
+        "/youtube/v3/search?part=snippet&maxResults=10&order=date&videoDefinition"
+        "=high&type=video&key=AIzaSyDHzmsH15YP7d7yjwR19nk5OJbAoqrcSIw&pageToken=$nextPageToken&q=$searchKeyword";
+    final response = await get(url);
+    if (response.status.hasError) {
+      return Future.error(response.statusText!);
+    } else {
+      if (response.body["items"] != null && response.body["items"].length > 0) {
+        return YoutubeVideoResult.fromJson(response.body);
+      }
+    }
+    return Future.error(response.statusText!);
+  }
+
 }
